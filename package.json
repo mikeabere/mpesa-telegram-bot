@@ -2,8 +2,11 @@
   "name": "mpesa-telegram-bot",
   "version": "1.0.0",
   "main": "index.js",
+ "type": "module",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node bot.js",
+    "dev": "nodemon server.js"
   },
   "keywords": [],
   "author": "",
@@ -11,7 +14,11 @@
   "description": "",
   "dependencies": {
     "axios": "^1.7.9",
+    "base-64": "^1.0.0",
+    "body-parser": "^1.20.3",
     "dotenv": "^16.4.7",
-    "express": "^4.21.2"
+    "express": "^4.21.2",
+    "node-telegram-bot-api": "^0.66.0",
+    "nodemon": "^3.1.9"
   }
 }
