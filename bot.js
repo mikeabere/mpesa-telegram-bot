@@ -20,7 +20,7 @@ const bot = new TelegramBot(TELEGRAM_BOT_TOKEN, { polling: true });
 
 // Function to generate access token
 async function getAccessToken() {
-  const url =
+  const oauthurl =
     "https://sandbox.safaricom.co.ke/oauth/v1/generate?grant_type=client_credentials";
   const auth = Buffer.from(`${CONSUMER_KEY}:${CONSUMER_SECRET}`).toString(
     "base64"
@@ -28,14 +28,14 @@ async function getAccessToken() {
   const headers = {
     Authorization: `Basic ${auth}`,
   };
-  const response = await axios.get(url, { headers });
+  const response = await axios.get(oauthurl, { headers });
   return response.data.access_token;
 }
 
 // Function to initiate STK push
 async function initiateSTKPush(phoneNumber, amount) {
   const accessToken = await getAccessToken();
-  const url = "https://sandbox.safaricom.co.ke/mpesa/stkpush/v1/processrequest";
+  const stkurl = "https://sandbox.safaricom.co.ke/mpesa/stkpush/v1/processrequest";
   const timestamp = new Date().toISOString().replace(/[-:.]/g, "").slice(0, 14);
   const password = base64.encode(`${SHORTCODE}${PASSKEY}${timestamp}`);
   const headers = {
@@ -55,7 +55,7 @@ async function initiateSTKPush(phoneNumber, amount) {
     AccountReference: "Test",
     TransactionDesc: "Payment for services",
   };
-  const response = await axios.post(url, payload, { headers });
+  const response = await axios.post(stkurl, payload, { headers });
   return response.data;
 }
 
