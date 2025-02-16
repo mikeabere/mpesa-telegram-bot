@@ -52,7 +52,7 @@ async function initiateSTKPush(phoneNumber, amount) {
     PartyB: SHORTCODE,
     PhoneNumber: "254757572696",
     CallBackURL: CALLBACK_URL,
-    AccountReference: "Test",
+    AccountReference: "Mpesa Telegram Bot",
     TransactionDesc: "Payment for services",
   };
   const response = await axios.post(stkurl, payload, { headers });
